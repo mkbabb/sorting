@@ -1,6 +1,6 @@
 import {
     CompareFunction,
-    comparator,
+    defaultComparator,
     insertionSort,
     quickSort
 } from "../src/sorting.js";
@@ -8,7 +8,7 @@ import {
 const testSort = function <T>(
     arr: Array<T>,
     sortingFunction: (arr: Array<T>, compareFunction: CompareFunction<T>) => Array<T>,
-    compareFunction = comparator
+    compareFunction = defaultComparator
 ): boolean {
     const baseSortedArr = Object.assign([], arr).sort(compareFunction);
     const sortedArr = sortingFunction(Object.assign([], arr), compareFunction);
@@ -23,7 +23,7 @@ const arr = new Array(n).fill(0).map(() => {
     return Math.floor(Math.random() * n);
 });
 
-const insertionSortTest = testSort(arr, insertionSort, comparator);
-const quickSortTest = testSort(arr, quickSort, comparator);
+const insertionSortTest = testSort(arr, insertionSort, defaultComparator);
+const quickSortTest = testSort(arr, quickSort, defaultComparator);
 
 console.log(insertionSortTest, quickSortTest);

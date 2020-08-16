@@ -1,12 +1,12 @@
 /* eslint-disable no-constant-condition */
 type CompareFunction<T> = (left: T, right: T) => number;
 
-const comparator = <T>(left: T, right: T): number =>
+const defaultComparator = <T>(left: T, right: T): number =>
     left > right ? 1 : left < right ? -1 : 0;
 
 const insertionSort = function <T>(
     arr: Array<T>,
-    compareFunction: CompareFunction<T> = comparator
+    compareFunction: CompareFunction<T> = defaultComparator
 ): Array<T> {
     for (let i = 1; i < arr.length; i++) {
         for (let j = i - 1; j >= 0; j--) {
@@ -23,13 +23,13 @@ const insertionSort = function <T>(
 
 const quickSort = function <T>(
     arr: Array<T>,
-    compareFunction: CompareFunction<T> = comparator
+    compareFunction: CompareFunction<T> = defaultComparator
 ): Array<T> {
     const medianOfThree = function (left: number, right: number): T {
         const first = arr[left];
         const middle = arr[Math.floor((left + right) / 2)];
         const last = arr[right];
-
+        // Why not 🤷‍♂️.
         return insertionSort([first, middle, last])[1];
     };
 
@@ -67,4 +67,4 @@ const quickSort = function <T>(
     return arr;
 };
 
-export { CompareFunction, comparator, insertionSort, quickSort };
+export { CompareFunction, defaultComparator, insertionSort, quickSort };
