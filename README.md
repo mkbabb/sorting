@@ -8,13 +8,13 @@ No production dependences are required, though if you want to clone and develop,
 
 ## Why?
 
-Why not? Sorting algorithms are of course implemented ad-nauseam, but it never hurts ya to give them a go yourself 😉.
+Why not? Sorting algorithms are, of course, implemented ad-nauseam, but it never hurts ya' to give them a go yourself 😉.
 
-That notwithstanding, most implementations of the below algorithms tend to be super-obfuscated by dated and terse syntax. That's not how I prefer to read programs, and that's not how I prefer to write em': it's my goal to implement most of the 'useful' or 'practical' (subjective claim here) sorting algorithms in a modern, semi-declarative style.
+That notwithstanding, most implementations of the below algorithms tend to be super-obfuscated by dated and terse syntax. That's not how I prefer to read code, and that's not how I prefer to write code: it's my goal to implement most of the 'useful' or 'interesting' (subjective view here) sorting algorithms in a modern, semi-declarative style.
 
 ### A Note on Efficiency
 
-Most algorithm text's implementations will be skewed toward simplicity and readability and almost totally lose sight of efficacy and performance. The latter, which is then left as a, say it with me:
+Most algorithm text's implementations will be skewed toward simplicity and readability and almost totally lose sight of efficiency and performance. The latter, which is then left as a, say it with me:
 
     "an exercise to the reader" 🎉
 
