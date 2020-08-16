@@ -1,28 +1,29 @@
 {
-  "name": "sorting",
-  "version": "1.0.0",
-  "description": "A collection of sorting algorithms implemented in TypeScript.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mkbabb/sorting.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mkbabb/sorting/issues"
-  },
-  "homepage": "https://github.com/mkbabb/sorting#readme",
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.9.0",
-    "@typescript-eslint/parser": "^3.9.0",
-    "eslint": "^7.7.0",
-    "eslint-config-google": "^0.14.0",
-    "prettier": "^2.0.5",
-    "typescript": "^3.9.7",
-    "typescript-eslint": "0.0.1-alpha.0"
-  }
+    "name": "sorting",
+    "version": "1.0.0",
+    "description": "A collection of sorting algorithms implemented in TypeScript.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mkbabb/sorting.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mkbabb/sorting/issues"
+    },
+    "homepage": "https://github.com/mkbabb/sorting#readme",
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^3.9.0",
+        "@typescript-eslint/parser": "^3.9.0",
+        "eslint": "^7.7.0",
+        "eslint-config-google": "^0.14.0",
+        "prettier": "^2.0.5",
+        "typescript": "^3.9.7",
+        "typescript-eslint": "0.0.1-alpha.0"
+    }
 }

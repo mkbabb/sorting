@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-        "target": "ES6",
-        "outDir": "src/",
-        "sourceMap": false,
+        "target": "ES2020",
+        "outDir": "",
+        "sourceMap": true,
         "module": "ES2020",
         "lib": [
             "ES2020",
@@ -13,6 +13,7 @@
         ""
     ],
     "include": [
-        "src/*"
+        "src/*",
+        "test/*"
     ]
 }
