@@ -1,6 +1,6 @@
 # sorting-algorithms 📦
 
-A collection of popular sorting algorithms implemented in declarative TypeScript.
+A collection of popular sorting algorithms implemented in declarative TypeScript 🚀.
 
 ## Quick Start
 
