@@ -1,5 +1,5 @@
-const comparator = (left, right) => left > right ? 1 : left < right ? -1 : 0;
-const insertionSort = function (arr, compareFunction = comparator) {
+const defaultComparator = (left, right) => left > right ? 1 : left < right ? -1 : 0;
+const insertionSort = function (arr, compareFunction = defaultComparator) {
     for (let i = 1; i < arr.length; i++) {
         for (let j = i - 1; j >= 0; j--) {
             const left = arr[j];
@@ -11,11 +11,12 @@ const insertionSort = function (arr, compareFunction = comparator) {
     }
     return arr;
 };
-const quickSort = function (arr, compareFunction = comparator) {
+const quickSort = function (arr, compareFunction = defaultComparator) {
     const medianOfThree = function (left, right) {
         const first = arr[left];
         const middle = arr[Math.floor((left + right) / 2)];
         const last = arr[right];
+        // Why not 🤷‍♂️.
         return insertionSort([first, middle, last])[1];
     };
     const hoarePartition = function (left, right) {
@@ -38,8 +39,19 @@ const quickSort = function (arr, compareFunction = comparator) {
             }
         }
     };
+    const lomutoPartition = function (left, right) {
+        const pivot = arr[right];
+        for (let i = left; i < right; i++) {
+            if (compareFunction(arr[i], pivot) <= 0) {
+                [arr[i], arr[left]] = [arr[left], arr[i]];
+                left += 1;
+            }
+        }
+        [arr[left], arr[right]] = [arr[right], arr[left]];
+        return left - 1;
+    };
     const recurse = function (left, right) {
-        const pivotIndex = hoarePartition(left, right);
+        const pivotIndex = lomutoPartition(left, right);
         if (left < right) {
             recurse(left, pivotIndex);
             recurse(pivotIndex + 1, right);
@@ -48,5 +60,5 @@ const quickSort = function (arr, compareFunction = comparator) {
     recurse(0, arr.length - 1);
     return arr;
 };
-export { comparator, insertionSort, quickSort };
+export { defaultComparator, insertionSort, quickSort };
 //# sourceMappingURL=sorting.js.map

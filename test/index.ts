@@ -17,11 +17,13 @@ const testSort = function <T>(
     }, true);
 };
 
-const n = 50000;
+const n = 5000;
 
 const arr = new Array(n).fill(0).map(() => {
     return Math.floor(Math.random() * n);
 });
+
+// const arr = [0, 3, 1, 4, 2];
 
 const insertionSortTest = testSort(arr, insertionSort, defaultComparator);
 const quickSortTest = testSort(arr, quickSort, defaultComparator);

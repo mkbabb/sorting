@@ -33,9 +33,8 @@ const quickSort = function <T>(
         return insertionSort([first, middle, last])[1];
     };
 
-    const hoarePartition = function (left: number, right: number) {
+    const hoarePartition = function (left: number, right: number): number {
         const pivot = medianOfThree(left, right);
-        // const pivot = arr[Math.floor((left + right) / 2)];
 
         while (1) {
             while (compareFunction(arr[left], pivot) < 0) {
@@ -55,8 +54,21 @@ const quickSort = function <T>(
         }
     };
 
+    const lomutoPartition = function (left: number, right: number): number {
+        const pivot = arr[right];
+
+        for (let i = left; i < right; i++) {
+            if (compareFunction(arr[i], pivot) <= 0) {
+                [arr[i], arr[left]] = [arr[left], arr[i]];
+                left += 1;
+            }
+        }
+        [arr[left], arr[right]] = [arr[right], arr[left]];
+        return left - 1;
+    };
+
     const recurse = function (left: number, right: number) {
-        const pivotIndex = hoarePartition(left, right);
+        const pivotIndex = lomutoPartition(left, right);
 
         if (left < right) {
             recurse(left, pivotIndex);

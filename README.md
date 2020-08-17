@@ -28,7 +28,7 @@ Here's a list of algorithms either implemented, or to be implemented in no parti
 
 -   [x] `quicksort`
     -   [x] Hoare partitioning scheme
-    -   [ ] Lomuto partitioning scheme.
+    -   [x] Lomuto partitioning scheme
 -   [x] `insertion sort`
 -   [ ] `merge sort`
     -   [ ] Standard
