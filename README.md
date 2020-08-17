@@ -41,6 +41,7 @@ Here's a list of algorithms either implemented, or to be implemented in no parti
 -   [ ] `heapsort`
 -   [ ] `tree sort`
 -   [ ] `introsort`
+-   [ ] `selection sort`
 
 ## A Brief Explanation of Each Algorithm
 
@@ -65,4 +66,15 @@ Below will be a general overview of each algorithm: how they work from both a hi
 -   worst: `O(n^2)`
 -   memory: `1`
 -   stability: `false`
+    ...
+
+### `merge sort (standard version)`
+
+...
+
+-   average: `O(n*log(n)`)
+-   **best**: `O(n*log(n))`
+-   worst: `O(n*log(n))`
+-   memory: `n`
+-   stability: `yes`
     ...
