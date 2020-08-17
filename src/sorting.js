@@ -2,10 +2,22 @@ const defaultComparator = (left, right) => left > right ? 1 : left < right ? -1 
 const insertionSort = function (arr, compareFunction = defaultComparator) {
     for (let i = 1; i < arr.length; i++) {
         for (let j = i - 1; j >= 0; j--) {
-            const left = arr[j];
-            const right = arr[j + 1];
-            if (compareFunction(right, left) < 0) {
-                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            const left = j;
+            const right = j + 1;
+            if (compareFunction(arr[right], arr[left]) < 0) {
+                [arr[left], arr[right]] = [arr[right], arr[left]];
+            }
+        }
+    }
+    return arr;
+};
+const bubbleSort = function (arr, compareFunction = defaultComparator) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length - i; j++) {
+            const left = j;
+            const right = j + 1;
+            if (compareFunction(arr[right], arr[left]) < 0) {
+                [arr[left], arr[right]] = [arr[right], arr[left]];
             }
         }
     }
@@ -93,5 +105,5 @@ const mergeSort = function (arr, compareFunction = defaultComparator) {
     };
     return recurse(arr);
 };
-export { defaultComparator, insertionSort, quickSort, mergeSort };
+export { defaultComparator, bubbleSort, insertionSort, quickSort, mergeSort };
 //# sourceMappingURL=sorting.js.map

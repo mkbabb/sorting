@@ -2,11 +2,12 @@ import {
     CompareFunction,
     defaultComparator,
     insertionSort,
+    bubbleSort,
     quickSort,
     mergeSort
 } from "../src/sorting.js";
 
-const testSort = function <T>(
+const testSortingFunction = function <T>(
     arr: Array<T>,
     sortingFunction: (arr: Array<T>, compareFunction: CompareFunction<T>) => Array<T>,
     compareFunction = defaultComparator
@@ -26,8 +27,17 @@ const arr = new Array(n).fill(0).map(() => {
 
 // const arr = [0, 3, 1, 4, 2];
 
-const insertionSortTest = testSort(arr, insertionSort, defaultComparator);
-const quickSortTest = testSort(arr, quickSort, defaultComparator);
-const mergeSortTest = testSort(arr, mergeSort, defaultComparator);
+const sortingFunctions = [insertionSort, bubbleSort, quickSort, mergeSort];
+let allPass = true;
 
-console.log(insertionSortTest, quickSortTest, mergeSortTest);
+sortingFunctions.map((sortingFunction) => {
+    const pass = testSortingFunction(arr, sortingFunction, defaultComparator);
+    console.log(`${sortingFunction.name} ${pass ? "passed" : "failed"}.`);
+    allPass = allPass && pass;
+});
+
+if (allPass) {
+    console.log("All sorting functions passed.");
+} else {
+    console.log("Some sorting functions failed.");
+}

@@ -66,7 +66,6 @@ Below will be a general overview of each algorithm: how they work from both a hi
 -   worst: `O(n^2)`
 -   memory: `1`
 -   stability: `false`
-    ...
 
 ### `merge sort (standard version)`
 
@@ -77,4 +76,6 @@ Below will be a general overview of each algorithm: how they work from both a hi
 -   worst: `O(n*log(n))`
 -   memory: `n`
 -   stability: `yes`
+
+
     ...

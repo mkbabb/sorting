@@ -10,11 +10,28 @@ const insertionSort = function <T>(
 ): Array<T> {
     for (let i = 1; i < arr.length; i++) {
         for (let j = i - 1; j >= 0; j--) {
-            const left = arr[j];
-            const right = arr[j + 1];
+            const left = j;
+            const right = j + 1;
 
-            if (compareFunction(right, left) < 0) {
-                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            if (compareFunction(arr[right], arr[left]) < 0) {
+                [arr[left], arr[right]] = [arr[right], arr[left]];
+            }
+        }
+    }
+    return arr;
+};
+
+const bubbleSort = function <T>(
+    arr: Array<T>,
+    compareFunction: CompareFunction<T> = defaultComparator
+): Array<T> {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length - i; j++) {
+            const left = j;
+            const right = j + 1;
+
+            if (compareFunction(arr[right], arr[left]) < 0) {
+                [arr[left], arr[right]] = [arr[right], arr[left]];
             }
         }
     }
@@ -122,4 +139,11 @@ const mergeSort = function <T>(
     return recurse(arr);
 };
 
-export { CompareFunction, defaultComparator, insertionSort, quickSort, mergeSort };
+export {
+    CompareFunction,
+    defaultComparator,
+    bubbleSort,
+    insertionSort,
+    quickSort,
+    mergeSort
+};
