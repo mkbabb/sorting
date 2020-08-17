@@ -79,4 +79,47 @@ const quickSort = function <T>(
     return arr;
 };
 
-export { CompareFunction, defaultComparator, insertionSort, quickSort };
+const mergeSort = function <T>(
+    arr: Array<T>,
+    compareFunction: CompareFunction<T> = defaultComparator
+): Array<T> {
+    const recurse = function (arr: Array<T>) {
+        if (arr.length <= 1) {
+            return arr;
+        } else {
+            const mid = Math.floor(arr.length / 2);
+
+            let leftArr = arr.slice(0, mid);
+            let rightArr = arr.slice(mid, arr.length);
+
+            leftArr = recurse(leftArr);
+            rightArr = recurse(rightArr);
+
+            return merge(leftArr, rightArr);
+        }
+    };
+
+    const merge = function (leftArr: Array<T>, rightArr: Array<T>) {
+        const out: Array<T> = [];
+        let left = 0;
+        let right = 0;
+
+        while (left < leftArr.length && right < rightArr.length) {
+            if (compareFunction(leftArr[left], rightArr[right]) < 0) {
+                out.push(leftArr[left]);
+                left += 1;
+            } else {
+                out.push(rightArr[right]);
+                right += 1;
+            }
+        }
+
+        return out
+            .concat(leftArr.splice(left, leftArr.length))
+            .concat(rightArr.splice(right, rightArr.length));
+    };
+
+    return recurse(arr);
+};
+
+export { CompareFunction, defaultComparator, insertionSort, quickSort, mergeSort };

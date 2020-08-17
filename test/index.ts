@@ -2,7 +2,8 @@ import {
     CompareFunction,
     defaultComparator,
     insertionSort,
-    quickSort
+    quickSort,
+    mergeSort
 } from "../src/sorting.js";
 
 const testSort = function <T>(
@@ -27,5 +28,6 @@ const arr = new Array(n).fill(0).map(() => {
 
 const insertionSortTest = testSort(arr, insertionSort, defaultComparator);
 const quickSortTest = testSort(arr, quickSort, defaultComparator);
+const mergeSortTest = testSort(arr, mergeSort, defaultComparator);
 
-console.log(insertionSortTest, quickSortTest);
+console.log(insertionSortTest, quickSortTest, mergeSortTest);

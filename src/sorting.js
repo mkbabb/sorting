@@ -21,7 +21,6 @@ const quickSort = function (arr, compareFunction = defaultComparator) {
     };
     const hoarePartition = function (left, right) {
         const pivot = medianOfThree(left, right);
-        // const pivot = arr[Math.floor((left + right) / 2)];
         while (1) {
             while (compareFunction(arr[left], pivot) < 0) {
                 left += 1;
@@ -60,5 +59,39 @@ const quickSort = function (arr, compareFunction = defaultComparator) {
     recurse(0, arr.length - 1);
     return arr;
 };
-export { defaultComparator, insertionSort, quickSort };
+const mergeSort = function (arr, compareFunction = defaultComparator) {
+    const recurse = function (arr) {
+        if (arr.length <= 1) {
+            return arr;
+        }
+        else {
+            const mid = Math.floor(arr.length / 2);
+            let leftArr = arr.slice(0, mid);
+            let rightArr = arr.slice(mid, arr.length);
+            leftArr = recurse(leftArr);
+            rightArr = recurse(rightArr);
+            return merge(leftArr, rightArr);
+        }
+    };
+    const merge = function (leftArr, rightArr) {
+        const out = [];
+        let left = 0;
+        let right = 0;
+        while (left < leftArr.length && right < rightArr.length) {
+            if (compareFunction(leftArr[left], rightArr[right]) < 0) {
+                out.push(leftArr[left]);
+                left += 1;
+            }
+            else {
+                out.push(rightArr[right]);
+                right += 1;
+            }
+        }
+        return out
+            .concat(leftArr.splice(left, leftArr.length))
+            .concat(rightArr.splice(right, rightArr.length));
+    };
+    return recurse(arr);
+};
+export { defaultComparator, insertionSort, quickSort, mergeSort };
 //# sourceMappingURL=sorting.js.map

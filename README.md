@@ -20,6 +20,8 @@ Most algorithm text's implementations will be skewed toward simplicity and reada
 
 cue groaning noises 🙄. While the implementations here won't be 100% production ready, they will be skewed _more_ towards the performance side of things; implementations that are _more_ practical than _readable_ (though we'll strive for both).
 
+On the other hand, don't expect any code golfing: _sometimes_, for the sake of readability, we'll explicitly write out a step or two that could've been compacted into one: more often than not, this won't sacrifice performance, just imaginary whitespace points 💲.
+
 ## The List
 
 We'll aim to implement many of the popular and standard sorting algorithms, along with some common variations and optimizations thereof (such as merge sort's natural run implementation).
@@ -30,8 +32,8 @@ Here's a list of algorithms either implemented, or to be implemented in no parti
     -   [x] Hoare partitioning scheme
     -   [x] Lomuto partitioning scheme
 -   [x] `insertion sort`
--   [ ] `merge sort`
-    -   [ ] Standard
+-   [x] `merge sort`
+    -   [x] Standard
     -   [ ] Natural run variation
 -   [ ] `bubble sort`
 -   [ ] `timsort`
@@ -45,7 +47,9 @@ Here's a list of algorithms either implemented, or to be implemented in no parti
 Below will be a general overview of each algorithm: how they work from both a high and low level perspective. We'll also list the **average**, **best**, and **worst** case runtime complexities, as well as memory complexity and stability.
 
 ### `quicksort`
+
 ...
+
 -   average: `O(n*log(n))`
 -   **best**: `O(n*log(n))`
 -   worst: `O(n^2)`
@@ -53,10 +57,12 @@ Below will be a general overview of each algorithm: how they work from both a hi
 -   stability: `false`
 
 ### `insertion sort`
+
 ...
+
 -   average: `O(n^2`)
 -   **best**: `O(n)`
 -   worst: `O(n^2)`
 -   memory: `1`
 -   stability: `false`
-...
+    ...
