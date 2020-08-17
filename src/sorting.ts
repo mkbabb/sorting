@@ -85,6 +85,7 @@ const quickSort = function <T>(
     };
 
     const recurse = function (left: number, right: number) {
+        // The partitioning function will be a parameter in the future.
         const pivotIndex = lomutoPartition(left, right);
 
         if (left < right) {

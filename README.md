@@ -67,6 +67,16 @@ Below will be a general overview of each algorithm: how they work from both a hi
 -   memory: `1`
 -   stability: `false`
 
+### `bubble sort`
+
+...
+
+-   average: `O(n^2`)
+-   **best**: `O(n)`
+-   worst: `O(n^2)`
+-   memory: `1`
+-   stability: `false`
+
 ### `merge sort (standard version)`
 
 ...
