@@ -1,23 +1,29 @@
-import { defaultComparator, insertionSort, bubbleSort, quickSort, mergeSort } from "../src/sorting.js";
-const testSort = function (arr, sortingFunction, compareFunction = defaultComparator) {
+import { defaultComparator, insertionSort, bubbleSort, quickSort, mergeSort } from "../src/comparison.js";
+const testSortingFunction = function (arr, sortingFunction, compareFunction = defaultComparator) {
     const baseSortedArr = Object.assign([], arr).sort(compareFunction);
     const sortedArr = sortingFunction(Object.assign([], arr), compareFunction);
     return baseSortedArr.reduce((acc, currValue, i) => {
-        return acc && currValue === sortedArr[i];
+        return acc && compareFunction(currValue, sortedArr[i]) === 0;
     }, true);
 };
-const mapPassFail = (b) => (b ? "passed" : "failed");
+const testSortingFunctions = function (n, sortingFunctions) {
+    const arr = new Array(n).fill(0).map(() => {
+        return Math.floor(Math.random() * n);
+    });
+    let allPass = true;
+    sortingFunctions.map((sortingFunction) => {
+        const pass = testSortingFunction(arr, sortingFunction, defaultComparator);
+        console.log(`${sortingFunction.name} ${pass ? "passed" : "failed"}.`);
+        allPass = allPass && pass;
+    });
+    if (allPass) {
+        console.log("All sorting functions passed.");
+    }
+    else {
+        console.log("Some sorting functions failed.");
+    }
+};
 const n = 5000;
-const arr = new Array(n).fill(0).map(() => {
-    return Math.floor(Math.random() * n);
-});
-// const arr = [0, 3, 1, 4, 2];
-const sortingFunctions = [insertionSort, bubbleSort, quickSort, mergeSort];
-let allPass = true;
-sortingFunctions.map((sortingFunction) => {
-    const pass = testSort(arr, sortingFunction, defaultComparator);
-    console.log(`${sortingFunction.name} ${mapPassFail(pass)}.`);
-    allPass = allPass && pass;
-});
-console.log(`All sorting functions ${mapPassFail(allPass)}.`);
+const comparisonSortingFunctions = [insertionSort, bubbleSort, quickSort, mergeSort];
+testSortingFunctions(n, comparisonSortingFunctions);
 //# sourceMappingURL=index.js.map

@@ -1,9 +1,23 @@
-const defaultComparator = (left, right) => left > right ? 1 : left < right ? -1 : 0;
-const insertionSort = function (arr, compareFunction = defaultComparator) {
+/* eslint-disable no-constant-condition */
+type CompareFunction<T> = (left: T, right: T) => number;
+
+type ComparisonSortingFunction<T> = (
+    arr: Array<T>,
+    compareFunction: CompareFunction<T>
+) => Array<T>;
+
+const defaultComparator = <T>(left: T, right: T): number =>
+    left > right ? 1 : left < right ? -1 : 0;
+
+const insertionSort = function <T>(
+    arr: Array<T>,
+    compareFunction: CompareFunction<T> = defaultComparator
+): Array<T> {
     for (let i = 1; i < arr.length; i++) {
         for (let j = i - 1; j >= 0; j--) {
             const left = j;
             const right = j + 1;
+
             if (compareFunction(arr[right], arr[left]) < 0) {
                 [arr[left], arr[right]] = [arr[right], arr[left]];
             }
@@ -11,11 +25,16 @@ const insertionSort = function (arr, compareFunction = defaultComparator) {
     }
     return arr;
 };
-const bubbleSort = function (arr, compareFunction = defaultComparator) {
+
+const bubbleSort = function <T>(
+    arr: Array<T>,
+    compareFunction: CompareFunction<T> = defaultComparator
+): Array<T> {
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr.length - i; j++) {
             const left = j;
             const right = j + 1;
+
             if (compareFunction(arr[right], arr[left]) < 0) {
                 [arr[left], arr[right]] = [arr[right], arr[left]];
             }
@@ -23,16 +42,22 @@ const bubbleSort = function (arr, compareFunction = defaultComparator) {
     }
     return arr;
 };
-const quickSort = function (arr, compareFunction = defaultComparator) {
-    const medianOfThree = function (left, right) {
+
+const quickSort = function <T>(
+    arr: Array<T>,
+    compareFunction: CompareFunction<T> = defaultComparator
+): Array<T> {
+    const medianOfThree = function (left: number, right: number): T {
         const first = arr[left];
         const middle = arr[Math.floor((left + right) / 2)];
         const last = arr[right];
         // Why not 🤷‍♂️.
         return insertionSort([first, middle, last])[1];
     };
-    const hoarePartition = function (left, right) {
+
+    const hoarePartition = function (left: number, right: number): number {
         const pivot = medianOfThree(left, right);
+
         while (1) {
             while (compareFunction(arr[left], pivot) < 0) {
                 left += 1;
@@ -40,18 +65,20 @@ const quickSort = function (arr, compareFunction = defaultComparator) {
             while (compareFunction(pivot, arr[right]) < 0) {
                 right -= 1;
             }
+
             if (left < right) {
                 [arr[left], arr[right]] = [arr[right], arr[left]];
                 left += 1;
                 right -= 1;
-            }
-            else {
+            } else {
                 return right;
             }
         }
     };
-    const lomutoPartition = function (left, right) {
+
+    const lomutoPartition = function (left: number, right: number): number {
         const pivot = arr[right];
+
         for (let i = left; i < right; i++) {
             if (compareFunction(arr[i], pivot) <= 0) {
                 [arr[i], arr[left]] = [arr[left], arr[i]];
@@ -61,8 +88,11 @@ const quickSort = function (arr, compareFunction = defaultComparator) {
         [arr[left], arr[right]] = [arr[right], arr[left]];
         return left - 1;
     };
-    const recurse = function (left, right) {
+
+    const recurse = function (left: number, right: number) {
+        // The partitioning function will be a parameter in the future.
         const pivotIndex = lomutoPartition(left, right);
+
         if (left < right) {
             recurse(left, pivotIndex);
             recurse(pivotIndex + 1, right);
@@ -71,39 +101,56 @@ const quickSort = function (arr, compareFunction = defaultComparator) {
     recurse(0, arr.length - 1);
     return arr;
 };
-const mergeSort = function (arr, compareFunction = defaultComparator) {
-    const recurse = function (arr) {
+
+const mergeSort = function <T>(
+    arr: Array<T>,
+    compareFunction: CompareFunction<T> = defaultComparator
+): Array<T> {
+    const recurse = function (arr: Array<T>) {
         if (arr.length <= 1) {
             return arr;
-        }
-        else {
+        } else {
             const mid = Math.floor(arr.length / 2);
+
             let leftArr = arr.slice(0, mid);
             let rightArr = arr.slice(mid, arr.length);
+
             leftArr = recurse(leftArr);
             rightArr = recurse(rightArr);
+
             return merge(leftArr, rightArr);
         }
     };
-    const merge = function (leftArr, rightArr) {
-        const out = [];
+
+    const merge = function (leftArr: Array<T>, rightArr: Array<T>) {
+        const out: Array<T> = [];
         let left = 0;
         let right = 0;
+
         while (left < leftArr.length && right < rightArr.length) {
             if (compareFunction(leftArr[left], rightArr[right]) < 0) {
                 out.push(leftArr[left]);
                 left += 1;
-            }
-            else {
+            } else {
                 out.push(rightArr[right]);
                 right += 1;
             }
         }
+
         return out
             .concat(leftArr.splice(left, leftArr.length))
             .concat(rightArr.splice(right, rightArr.length));
     };
+
     return recurse(arr);
 };
-export { defaultComparator, bubbleSort, insertionSort, quickSort, mergeSort };
-//# sourceMappingURL=sorting.js.map
+
+export {
+    ComparisonSortingFunction,
+    CompareFunction,
+    defaultComparator,
+    bubbleSort,
+    insertionSort,
+    quickSort,
+    mergeSort
+};
