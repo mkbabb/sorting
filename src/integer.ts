@@ -1,5 +1,6 @@
 type KeyFunction<T> = (key: T) => number;
 
+// @ts-expect-error
 const defaultKeyFunction = <T>(key: T): number => <T>key;
 
 const getDigit = function (x: number, digit: number) {
@@ -46,7 +47,7 @@ const radixSort = function <T>(
     const digits = maxValue > 0 ? Math.floor(Math.log10(maxValue)) : 0;
 
     for (let i = 0; i < digits + 1; i++) {
-        countingSort(arr, (x) => getDigit(x, i));
+        countingSort(arr, (x) => getDigit(keyFunction(x), i));
     }
 
     return arr;
