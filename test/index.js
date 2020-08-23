@@ -1,4 +1,5 @@
-import { defaultComparator, insertionSort, bubbleSort, quickSort, mergeSort } from "../src/comparison.js";
+import { defaultComparator } from "../src/comparison.js";
+import { countingSort } from "../src/integer.js";
 const testSortingFunction = function (arr, sortingFunction, compareFunction = defaultComparator) {
     const baseSortedArr = Object.assign([], arr).sort(compareFunction);
     const sortedArr = sortingFunction(Object.assign([], arr), compareFunction);
@@ -23,7 +24,14 @@ const testSortingFunctions = function (n, sortingFunctions) {
         console.log("Some sorting functions failed.");
     }
 };
-const n = 5000;
-const comparisonSortingFunctions = [insertionSort, bubbleSort, quickSort, mergeSort];
-testSortingFunctions(n, comparisonSortingFunctions);
+// const arr = ["7", "4A", "1", "4B", "2"];
+// const arr = [26, 24, 23, 25, 22];
+const arr = [6, 4, 3, 5, 2];
+countingSort(arr);
+// radixSort(arr);
+// insertionSort(arr);
+//
+// const n = 5000;
+// const comparisonSortingFunctions = [insertionSort, selectionSort, bubbleSort, quickSort, mergeSort];
+// testSortingFunctions(n, comparisonSortingFunctions);
 //# sourceMappingURL=index.js.map

@@ -20,7 +20,27 @@ const insertionSort = function <T>(
 
             if (compareFunction(arr[right], arr[left]) < 0) {
                 [arr[left], arr[right]] = [arr[right], arr[left]];
+            } else {
+                break;
             }
+        }
+    }
+    return arr;
+};
+
+const selectionSort = function <T>(
+    arr: Array<T>,
+    compareFunction: CompareFunction<T> = defaultComparator
+): Array<T> {
+    for (let i = 0; i < arr.length - 1; i++) {
+        let minIndex = i;
+
+        for (let j = i + 1; j < arr.length; j++) {
+            minIndex = compareFunction(arr[j], arr[minIndex]) < 0 ? j : minIndex;
+        }
+
+        if (minIndex !== i) {
+            [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
         }
     }
     return arr;
@@ -151,6 +171,7 @@ export {
     defaultComparator,
     bubbleSort,
     insertionSort,
+    selectionSort,
     quickSort,
     mergeSort
 };

@@ -4,9 +4,26 @@ const insertionSort = function (arr, compareFunction = defaultComparator) {
         for (let j = i - 1; j >= 0; j--) {
             const left = j;
             const right = j + 1;
+            console.log(arr[left], arr[right]);
             if (compareFunction(arr[right], arr[left]) < 0) {
                 [arr[left], arr[right]] = [arr[right], arr[left]];
             }
+            else {
+                break;
+            }
+        }
+    }
+    return arr;
+};
+const selectionSort = function (arr, compareFunction = defaultComparator) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        let minIndex = i;
+        for (let j = i + 1; j < arr.length; j++) {
+            console.log(arr[j], arr[minIndex]);
+            minIndex = compareFunction(arr[j], arr[minIndex]) < 0 ? j : minIndex;
+        }
+        if (minIndex !== i) {
+            [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
         }
     }
     return arr;
@@ -106,5 +123,5 @@ const mergeSort = function (arr, compareFunction = defaultComparator) {
     };
     return recurse(arr);
 };
-export { defaultComparator, bubbleSort, insertionSort, quickSort, mergeSort };
+export { defaultComparator, bubbleSort, insertionSort, selectionSort, quickSort, mergeSort };
 //# sourceMappingURL=comparison.js.map

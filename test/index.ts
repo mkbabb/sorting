@@ -3,6 +3,7 @@ import {
     CompareFunction,
     defaultComparator,
     insertionSort,
+    selectionSort,
     bubbleSort,
     quickSort,
     mergeSort
@@ -48,6 +49,12 @@ const testSortingFunctions = function (
 
 const n = 5000;
 
-const comparisonSortingFunctions = [insertionSort, bubbleSort, quickSort, mergeSort];
+const comparisonSortingFunctions = [
+    insertionSort,
+    selectionSort,
+    bubbleSort,
+    quickSort,
+    mergeSort
+];
 
 testSortingFunctions(n, comparisonSortingFunctions);
