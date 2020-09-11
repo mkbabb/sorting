@@ -58,3 +58,12 @@ const comparisonSortingFunctions = [
 ];
 
 testSortingFunctions(n, comparisonSortingFunctions);
+
+// const arr = ["GA", "VT", "AK", "PA", "NY", "NC", "MS"];
+// let arr = ["elk", "hog", "cat", "ox", "frog", "dog", "goat"];
+// let arr = ["NY", "VT", "MS", "PA", "NC", "GA", "AK"];
+// let arr = ["GA", "VT", "NC", "PA", "AK", "NY", "MS"];
+
+// quickSort(arr);
+// arr = mergeSort(arr);
+// console.log(arr);

@@ -1,3 +1,4 @@
+// @ts-expect-error
 const defaultKeyFunction = (key) => key;
 const getDigit = function (x, digit) {
     const ten = Math.pow(10, digit);
@@ -15,13 +16,7 @@ const countingSort = function (arr, keyFunction = defaultKeyFunction) {
     for (let i = 1; i < count.length; i++) {
         count[i] += count[i - 1];
     }
-    // for (let i = arr.length - 1; i >= 0; i--) {
-    //     const value = arr[i];
-    //     const key = keyFunction(value) - minValue;
-    //     out[count[key] - 1] = value;
-    //     count[key] -= 1;
-    // }
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = arr.length - 1; i >= 0; i--) {
         const value = arr[i];
         const key = keyFunction(value) - minValue;
         out[count[key] - 1] = value;
@@ -34,7 +29,7 @@ const radixSort = function (arr, keyFunction = defaultKeyFunction) {
     const maxValue = Math.max(...arr.map(keyFunction));
     const digits = maxValue > 0 ? Math.floor(Math.log10(maxValue)) : 0;
     for (let i = 0; i < digits + 1; i++) {
-        countingSort(arr, (x) => getDigit(x, i));
+        countingSort(arr, (x) => getDigit(keyFunction(x), i));
     }
     return arr;
 };

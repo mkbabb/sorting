@@ -67,16 +67,43 @@ const quickSort = function <T>(
     arr: Array<T>,
     compareFunction: CompareFunction<T> = defaultComparator
 ): Array<T> {
-    const medianOfThree = function (left: number, right: number): T {
+    const medianOfThree = function (left: number, right: number): number {
         const first = arr[left];
-        const middle = arr[Math.floor((left + right) / 2)];
+        const middleIndex = Math.floor((right - left) / 2) + left;
+        const middle = arr[middleIndex];
         const last = arr[right];
-        // Why not 🤷‍♂️.
-        return insertionSort([first, middle, last])[1];
+
+        const pivot = insertionSort([first, middle, last])[1];
+
+        if (pivot == first) {
+            return left;
+        } else if (pivot == middle) {
+            return middleIndex;
+        } else {
+            return right;
+        }
+    };
+
+    const randomElement = function (left: number, right: number): number {
+        return Math.floor(Math.random() * (right - left)) + left;
+    };
+
+    const middleElement = function (left: number, right: number): number {
+        return Math.floor((left + right) / 2) + left;
+    };
+
+    const selectPivot = function (
+        left: number,
+        right: number,
+        pivotFunction: (left: number, right: number) => number
+    ): void {
+        const pivotIndex = pivotFunction(left, right);
+        [arr[pivotIndex], arr[right]] = [arr[right], arr[pivotIndex]];
     };
 
     const hoarePartition = function (left: number, right: number): number {
-        const pivot = medianOfThree(left, right);
+        selectPivot(left, right, medianOfThree);
+        const pivot = arr[right];
 
         while (1) {
             while (compareFunction(arr[left], pivot) < 0) {
@@ -97,6 +124,7 @@ const quickSort = function <T>(
     };
 
     const lomutoPartition = function (left: number, right: number): number {
+        selectPivot(left, right, randomElement);
         const pivot = arr[right];
 
         for (let i = left; i < right; i++) {
@@ -106,15 +134,13 @@ const quickSort = function <T>(
             }
         }
         [arr[left], arr[right]] = [arr[right], arr[left]];
-        return left - 1;
+        return left;
     };
 
     const recurse = function (left: number, right: number) {
-        // The partitioning function will be a parameter in the future.
-        const pivotIndex = lomutoPartition(left, right);
-
         if (left < right) {
-            recurse(left, pivotIndex);
+            const pivotIndex = lomutoPartition(left, right);
+            recurse(left, pivotIndex - 1);
             recurse(pivotIndex + 1, right);
         }
     };

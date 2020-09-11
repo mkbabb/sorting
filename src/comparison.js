@@ -4,7 +4,6 @@ const insertionSort = function (arr, compareFunction = defaultComparator) {
         for (let j = i - 1; j >= 0; j--) {
             const left = j;
             const right = j + 1;
-            console.log(arr[left], arr[right]);
             if (compareFunction(arr[right], arr[left]) < 0) {
                 [arr[left], arr[right]] = [arr[right], arr[left]];
             }
@@ -19,7 +18,6 @@ const selectionSort = function (arr, compareFunction = defaultComparator) {
     for (let i = 0; i < arr.length - 1; i++) {
         let minIndex = i;
         for (let j = i + 1; j < arr.length; j++) {
-            console.log(arr[j], arr[minIndex]);
             minIndex = compareFunction(arr[j], arr[minIndex]) < 0 ? j : minIndex;
         }
         if (minIndex !== i) {
@@ -43,13 +41,33 @@ const bubbleSort = function (arr, compareFunction = defaultComparator) {
 const quickSort = function (arr, compareFunction = defaultComparator) {
     const medianOfThree = function (left, right) {
         const first = arr[left];
-        const middle = arr[Math.floor((left + right) / 2)];
+        const middleIndex = Math.floor((right - left) / 2) + left;
+        const middle = arr[middleIndex];
         const last = arr[right];
-        // Why not 🤷‍♂️.
-        return insertionSort([first, middle, last])[1];
+        const pivot = insertionSort([first, middle, last])[1];
+        if (pivot == first) {
+            return left;
+        }
+        else if (pivot == middle) {
+            return middleIndex;
+        }
+        else {
+            return right;
+        }
+    };
+    const randomElement = function (left, right) {
+        return Math.floor(Math.random() * (right - left)) + left;
+    };
+    const middleElement = function (left, right) {
+        return Math.floor((left + right) / 2) + left;
+    };
+    const selectPivot = function (left, right, pivotFunction) {
+        const pivotIndex = pivotFunction(left, right);
+        [arr[pivotIndex], arr[right]] = [arr[right], arr[pivotIndex]];
     };
     const hoarePartition = function (left, right) {
-        const pivot = medianOfThree(left, right);
+        selectPivot(left, right, medianOfThree);
+        const pivot = arr[right];
         while (1) {
             while (compareFunction(arr[left], pivot) < 0) {
                 left += 1;
@@ -68,6 +86,7 @@ const quickSort = function (arr, compareFunction = defaultComparator) {
         }
     };
     const lomutoPartition = function (left, right) {
+        selectPivot(left, right, medianOfThree);
         const pivot = arr[right];
         for (let i = left; i < right; i++) {
             if (compareFunction(arr[i], pivot) <= 0) {
@@ -76,13 +95,12 @@ const quickSort = function (arr, compareFunction = defaultComparator) {
             }
         }
         [arr[left], arr[right]] = [arr[right], arr[left]];
-        return left - 1;
+        return left;
     };
     const recurse = function (left, right) {
-        // The partitioning function will be a parameter in the future.
-        const pivotIndex = lomutoPartition(left, right);
         if (left < right) {
-            recurse(left, pivotIndex);
+            const pivotIndex = lomutoPartition(left, right);
+            recurse(left, pivotIndex - 1);
             recurse(pivotIndex + 1, right);
         }
     };

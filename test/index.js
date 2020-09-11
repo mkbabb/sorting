@@ -1,5 +1,4 @@
-import { defaultComparator } from "../src/comparison.js";
-import { countingSort } from "../src/integer.js";
+import { defaultComparator, insertionSort, selectionSort, bubbleSort, quickSort, mergeSort } from "../src/comparison.js";
 const testSortingFunction = function (arr, sortingFunction, compareFunction = defaultComparator) {
     const baseSortedArr = Object.assign([], arr).sort(compareFunction);
     const sortedArr = sortingFunction(Object.assign([], arr), compareFunction);
@@ -24,14 +23,20 @@ const testSortingFunctions = function (n, sortingFunctions) {
         console.log("Some sorting functions failed.");
     }
 };
-// const arr = ["7", "4A", "1", "4B", "2"];
-// const arr = [26, 24, 23, 25, 22];
-const arr = [6, 4, 3, 5, 2];
-countingSort(arr);
-// radixSort(arr);
-// insertionSort(arr);
-//
-// const n = 5000;
-// const comparisonSortingFunctions = [insertionSort, selectionSort, bubbleSort, quickSort, mergeSort];
-// testSortingFunctions(n, comparisonSortingFunctions);
+const n = 5000;
+const comparisonSortingFunctions = [
+    insertionSort,
+    selectionSort,
+    bubbleSort,
+    quickSort,
+    mergeSort
+];
+testSortingFunctions(n, comparisonSortingFunctions);
+// const arr = ["GA", "VT", "AK", "PA", "NY", "NC", "MS"];
+// let arr = ["elk", "hog", "cat", "ox", "frog", "dog", "goat"];
+// let arr = ["NY", "VT", "MS", "PA", "NC", "GA", "AK"];
+// let arr = ["GA", "VT", "NC", "PA", "AK", "NY", "MS"];
+// quickSort(arr);
+// arr = mergeSort(arr);
+// console.log(arr);
 //# sourceMappingURL=index.js.map
