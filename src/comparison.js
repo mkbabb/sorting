@@ -57,6 +57,7 @@ const quickSort = function (arr, compareFunction = defaultComparator) {
     };
     const randomElement = function (left, right) {
         return Math.floor(Math.random() * (right - left)) + left;
+        // return 3;
     };
     const middleElement = function (left, right) {
         return Math.floor((left + right) / 2) + left;
@@ -86,15 +87,17 @@ const quickSort = function (arr, compareFunction = defaultComparator) {
         }
     };
     const lomutoPartition = function (left, right) {
-        selectPivot(left, right, medianOfThree);
+        selectPivot(left, right, randomElement);
         const pivot = arr[right];
         for (let i = left; i < right; i++) {
+            // console.log(arr[i], pivot);
             if (compareFunction(arr[i], pivot) <= 0) {
                 [arr[i], arr[left]] = [arr[left], arr[i]];
                 left += 1;
             }
         }
         [arr[left], arr[right]] = [arr[right], arr[left]];
+        // console.log(arr);
         return left;
     };
     const recurse = function (left, right) {
@@ -110,36 +113,46 @@ const quickSort = function (arr, compareFunction = defaultComparator) {
 const mergeSort = function (arr, compareFunction = defaultComparator) {
     const recurse = function (arr) {
         if (arr.length <= 1) {
-            return arr;
+            return;
         }
         else {
-            const mid = Math.floor(arr.length / 2);
-            let leftArr = arr.slice(0, mid);
-            let rightArr = arr.slice(mid, arr.length);
-            leftArr = recurse(leftArr);
-            rightArr = recurse(rightArr);
-            return merge(leftArr, rightArr);
+            const middleIndex = Math.floor(arr.length / 2);
+            const leftArr = arr.slice(0, middleIndex);
+            const rightArr = arr.slice(middleIndex, arr.length);
+            recurse(leftArr);
+            recurse(rightArr);
+            merge(leftArr, rightArr);
+            return;
         }
     };
     const merge = function (leftArr, rightArr) {
-        const out = [];
         let left = 0;
         let right = 0;
+        let ix = 0;
         while (left < leftArr.length && right < rightArr.length) {
             if (compareFunction(leftArr[left], rightArr[right]) < 0) {
-                out.push(leftArr[left]);
+                arr[ix] = leftArr[left];
                 left += 1;
             }
             else {
-                out.push(rightArr[right]);
+                arr[ix] = rightArr[right];
                 right += 1;
             }
+            ix += 1;
         }
-        return out
-            .concat(leftArr.splice(left, leftArr.length))
-            .concat(rightArr.splice(right, rightArr.length));
+        while (left < leftArr.length) {
+            arr[ix] = leftArr[left];
+            left += 1;
+            ix += 1;
+        }
+        while (right < rightArr.length) {
+            arr[ix] = rightArr[right];
+            right += 1;
+            ix += 1;
+        }
     };
-    return recurse(arr);
+    recurse(arr);
+    return arr;
 };
 export { defaultComparator, bubbleSort, insertionSort, selectionSort, quickSort, mergeSort };
 //# sourceMappingURL=comparison.js.map

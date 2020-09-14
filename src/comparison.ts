@@ -154,41 +154,52 @@ const mergeSort = function <T>(
 ): Array<T> {
     const recurse = function (arr: Array<T>) {
         if (arr.length <= 1) {
-            return arr;
+            return;
         } else {
-            const mid = Math.floor(arr.length / 2);
+            const middleIndex = Math.floor(arr.length / 2);
 
-            let leftArr = arr.slice(0, mid);
-            let rightArr = arr.slice(mid, arr.length);
+            const leftArr = arr.slice(0, middleIndex);
+            const rightArr = arr.slice(middleIndex, arr.length);
 
-            leftArr = recurse(leftArr);
-            rightArr = recurse(rightArr);
+            recurse(leftArr);
+            recurse(rightArr);
 
-            return merge(leftArr, rightArr);
+            merge(leftArr, rightArr);
+            return;
         }
     };
 
     const merge = function (leftArr: Array<T>, rightArr: Array<T>) {
-        const out: Array<T> = [];
         let left = 0;
         let right = 0;
+        let ix = 0;
 
         while (left < leftArr.length && right < rightArr.length) {
             if (compareFunction(leftArr[left], rightArr[right]) < 0) {
-                out.push(leftArr[left]);
+                arr[ix] = leftArr[left];
                 left += 1;
             } else {
-                out.push(rightArr[right]);
+                arr[ix] = rightArr[right];
                 right += 1;
             }
+            ix += 1;
         }
 
-        return out
-            .concat(leftArr.splice(left, leftArr.length))
-            .concat(rightArr.splice(right, rightArr.length));
+        while (left < leftArr.length) {
+            arr[ix] = leftArr[left];
+            left += 1;
+            ix += 1;
+        }
+
+        while (right < rightArr.length) {
+            arr[ix] = rightArr[right];
+            right += 1;
+            ix += 1;
+        }
     };
 
-    return recurse(arr);
+    recurse(arr);
+    return arr;
 };
 
 export {
