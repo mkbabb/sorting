@@ -65,7 +65,18 @@ testSortingFunctions(n, comparisonSortingFunctions);
 // let arr = ["GA", "VT", "NC", "PA", "AK", "NY", "MS"];
 // const arr = ["TN", "AL", "NE", "GA", "AK", "NY", "MS", "DE", "AL"];
 
+// const arr = ["bird", "cat", "dog", "elk", "emu", "lion", "ox"];
+// const arr = ["ox", "emu", "bird", "lion", "dog", "cat", "elk"];
+
+// const arr = ["pen", "stapler", "eraser", "marker", "paper", "bell", "scissors"];
 // quickSort(arr);
-// console.log(arr);
+
+// const leftArr = ["cake", "cookie", "donut", "eclair", "jelly", "pasta"];
+
+// const rightArr = ["bagel", "brownie", "candy", "jam", "pie", "scone", "tart"];
+
+// merge(leftArr, rightArr);
+
+//
 // arr = mergeSort(arr);
 // console.log(arr);

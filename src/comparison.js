@@ -28,7 +28,7 @@ const selectionSort = function (arr, compareFunction = defaultComparator) {
 };
 const bubbleSort = function (arr, compareFunction = defaultComparator) {
     for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j < arr.length - i; j++) {
+        for (let j = 0; j < arr.length - i - 1; j++) {
             const left = j;
             const right = j + 1;
             if (compareFunction(arr[right], arr[left]) < 0) {
@@ -57,7 +57,6 @@ const quickSort = function (arr, compareFunction = defaultComparator) {
     };
     const randomElement = function (left, right) {
         return Math.floor(Math.random() * (right - left)) + left;
-        // return 3;
     };
     const middleElement = function (left, right) {
         return Math.floor((left + right) / 2) + left;
@@ -90,14 +89,12 @@ const quickSort = function (arr, compareFunction = defaultComparator) {
         selectPivot(left, right, randomElement);
         const pivot = arr[right];
         for (let i = left; i < right; i++) {
-            // console.log(arr[i], pivot);
             if (compareFunction(arr[i], pivot) <= 0) {
                 [arr[i], arr[left]] = [arr[left], arr[i]];
                 left += 1;
             }
         }
         [arr[left], arr[right]] = [arr[right], arr[left]];
-        // console.log(arr);
         return left;
     };
     const recurse = function (left, right) {
@@ -121,32 +118,32 @@ const mergeSort = function (arr, compareFunction = defaultComparator) {
             const rightArr = arr.slice(middleIndex, arr.length);
             recurse(leftArr);
             recurse(rightArr);
-            merge(leftArr, rightArr);
+            merge(leftArr, rightArr, arr);
             return;
         }
     };
-    const merge = function (leftArr, rightArr) {
+    const merge = function (leftArr, rightArr, out) {
         let left = 0;
         let right = 0;
         let ix = 0;
         while (left < leftArr.length && right < rightArr.length) {
             if (compareFunction(leftArr[left], rightArr[right]) < 0) {
-                arr[ix] = leftArr[left];
+                out[ix] = leftArr[left];
                 left += 1;
             }
             else {
-                arr[ix] = rightArr[right];
+                out[ix] = rightArr[right];
                 right += 1;
             }
             ix += 1;
         }
         while (left < leftArr.length) {
-            arr[ix] = leftArr[left];
+            out[ix] = leftArr[left];
             left += 1;
             ix += 1;
         }
         while (right < rightArr.length) {
-            arr[ix] = rightArr[right];
+            out[ix] = rightArr[right];
             right += 1;
             ix += 1;
         }

@@ -51,7 +51,7 @@ const bubbleSort = function <T>(
     compareFunction: CompareFunction<T> = defaultComparator
 ): Array<T> {
     for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j < arr.length - i; j++) {
+        for (let j = 0; j < arr.length - i - 1; j++) {
             const left = j;
             const right = j + 1;
 
@@ -125,6 +125,7 @@ const quickSort = function <T>(
 
     const lomutoPartition = function (left: number, right: number): number {
         selectPivot(left, right, randomElement);
+
         const pivot = arr[right];
 
         for (let i = left; i < right; i++) {
@@ -164,35 +165,35 @@ const mergeSort = function <T>(
             recurse(leftArr);
             recurse(rightArr);
 
-            merge(leftArr, rightArr);
+            merge(leftArr, rightArr, arr);
             return;
         }
     };
 
-    const merge = function (leftArr: Array<T>, rightArr: Array<T>) {
+    const merge = function (leftArr: Array<T>, rightArr: Array<T>, out: Array<T>) {
         let left = 0;
         let right = 0;
         let ix = 0;
 
         while (left < leftArr.length && right < rightArr.length) {
             if (compareFunction(leftArr[left], rightArr[right]) < 0) {
-                arr[ix] = leftArr[left];
+                out[ix] = leftArr[left];
                 left += 1;
             } else {
-                arr[ix] = rightArr[right];
+                out[ix] = rightArr[right];
                 right += 1;
             }
             ix += 1;
         }
 
         while (left < leftArr.length) {
-            arr[ix] = leftArr[left];
+            out[ix] = leftArr[left];
             left += 1;
             ix += 1;
         }
 
         while (right < rightArr.length) {
-            arr[ix] = rightArr[right];
+            out[ix] = rightArr[right];
             right += 1;
             ix += 1;
         }
