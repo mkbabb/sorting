@@ -31,7 +31,7 @@ const comparisonSortingFunctions = [
     quickSort,
     mergeSort
 ];
-testSortingFunctions(n, comparisonSortingFunctions);
+// testSortingFunctions(n, comparisonSortingFunctions);
 // const arr = ["GA", "VT", "AK", "PA", "NY", "NC", "MS"];
 // let arr = ["elk", "hog", "cat", "ox", "frog", "dog", "goat"];
 // let arr = ["NY", "VT", "MS", "PA", "NC", "GA", "AK"];
@@ -80,9 +80,9 @@ const merge = function (leftArr, rightArr, out) {
         ix += 1;
     }
 };
-const leftArr = ["cake", "cookie", "donut", "eclair", "jelly", "pasta"];
-const rightArr = ["bagel", "brownie", "candy", "jam", "pie", "scone", "tart"];
-merge(leftArr, rightArr, [...leftArr, ...rightArr]);
+// const leftArr = ["cake", "cookie", "donut", "eclair", "jelly", "pasta"];
+// const rightArr = ["bagel", "brownie", "candy", "jam", "pie", "scone", "tart"];
+// merge(leftArr, rightArr, [...leftArr, ...rightArr]);
 //
 // arr = mergeSort(arr);
 // console.log(arr);

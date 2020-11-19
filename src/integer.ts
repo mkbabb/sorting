@@ -16,7 +16,7 @@ const countingSort = function <T = number>(
     const minValue = Math.min(...arr.map(keyFunction));
 
     const count = Array(maxValue - minValue + 1).fill(0);
-    const out = [...arr];
+    const out = Array(arr.length).fill(null);
 
     arr.forEach((value) => {
         const key = keyFunction(value) - minValue;
