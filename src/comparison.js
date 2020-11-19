@@ -1,9 +1,11 @@
 const defaultComparator = (left, right) => left > right ? 1 : left < right ? -1 : 0;
 const insertionSort = function (arr, compareFunction = defaultComparator) {
+    let total = 0;
     for (let i = 1; i < arr.length; i++) {
         for (let j = i - 1; j >= 0; j--) {
             const left = j;
             const right = j + 1;
+            total += 1;
             if (compareFunction(arr[right], arr[left]) < 0) {
                 [arr[left], arr[right]] = [arr[right], arr[left]];
             }
@@ -12,18 +14,22 @@ const insertionSort = function (arr, compareFunction = defaultComparator) {
             }
         }
     }
+    console.log(total);
     return arr;
 };
 const selectionSort = function (arr, compareFunction = defaultComparator) {
+    let total = 0;
     for (let i = 0; i < arr.length - 1; i++) {
         let minIndex = i;
-        for (let j = i + 1; j < arr.length; j++) {
+        for (let j = i; j < arr.length; j++) {
+            total += 1;
             minIndex = compareFunction(arr[j], arr[minIndex]) < 0 ? j : minIndex;
         }
         if (minIndex !== i) {
             [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
         }
     }
+    console.log(total);
     return arr;
 };
 const bubbleSort = function (arr, compareFunction = defaultComparator) {
@@ -57,6 +63,7 @@ const quickSort = function (arr, compareFunction = defaultComparator) {
     };
     const randomElement = function (left, right) {
         return Math.floor(Math.random() * (right - left)) + left;
+        return right;
     };
     const middleElement = function (left, right) {
         return Math.floor((left + right) / 2) + left;

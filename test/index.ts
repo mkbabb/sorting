@@ -71,11 +71,62 @@ testSortingFunctions(n, comparisonSortingFunctions);
 // const arr = ["pen", "stapler", "eraser", "marker", "paper", "bell", "scissors"];
 // quickSort(arr);
 
-// const leftArr = ["cake", "cookie", "donut", "eclair", "jelly", "pasta"];
+// const arr = [8, 11, 9, 8, 12, 9, 12];
 
-// const rightArr = ["bagel", "brownie", "candy", "jam", "pie", "scone", "tart"];
+// countingSort(arr);
+// console.log(arr);
 
-// merge(leftArr, rightArr);
+// let arr = [];
+
+// for (let i = 0; i < 397; i++) {
+//     arr.push(i);
+// }
+
+// arr = arr.reverse();
+
+// selectionSort(arr);
+
+// insertionSort(arr);
+
+const merge = function <T>(leftArr: Array<T>, rightArr: Array<T>, out: Array<T>) {
+    let left = 0;
+    let right = 0;
+    let ix = 0;
+
+    let total = 0;
+
+    while (left < leftArr.length && right < rightArr.length) {
+        total += 1;
+        if (leftArr[left] < rightArr[right]) {
+            out[ix] = leftArr[left];
+            left += 1;
+        } else {
+            out[ix] = rightArr[right];
+            right += 1;
+        }
+        ix += 1;
+    }
+
+    console.log(total);
+
+    while (left < leftArr.length) {
+        out[ix] = leftArr[left];
+        left += 1;
+        ix += 1;
+    }
+
+    while (right < rightArr.length) {
+        out[ix] = rightArr[right];
+        right += 1;
+        ix += 1;
+    }
+};
+
+const leftArr = ["cake", "cookie", "donut", "eclair", "jelly", "pasta"];
+
+const rightArr = ["bagel", "brownie", "candy", "jam", "pie", "scone", "tart"];
+
+merge(leftArr, rightArr, [...leftArr, ...rightArr]);
 
 //
 // arr = mergeSort(arr);

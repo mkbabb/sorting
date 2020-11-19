@@ -16,7 +16,7 @@ const countingSort = function <T = number>(
     const minValue = Math.min(...arr.map(keyFunction));
 
     const count = Array(maxValue - minValue + 1).fill(0);
-    const out = Array(arr.length).fill(0);
+    const out = [...arr];
 
     arr.forEach((value) => {
         const key = keyFunction(value) - minValue;
@@ -27,7 +27,15 @@ const countingSort = function <T = number>(
         count[i] += count[i - 1];
     }
 
-    for (let i = arr.length - 1; i >= 0; i--) {
+    // for (let i = arr.length - 1; i >= 0; i--) {
+    //     const value = arr[i];
+    //     const key = keyFunction(value) - minValue;
+
+    //     out[count[key] - 1] = value;
+    //     count[key] -= 1;
+    // }
+
+    for (let i = 0; i < arr.length; i++) {
         const value = arr[i];
         const key = keyFunction(value) - minValue;
 
