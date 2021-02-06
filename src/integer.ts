@@ -27,21 +27,21 @@ const countingSort = function <T = number>(
         count[i] += count[i - 1];
     }
 
-    // for (let i = arr.length - 1; i >= 0; i--) {
-    //     const value = arr[i];
-    //     const key = keyFunction(value) - minValue;
-
-    //     out[count[key] - 1] = value;
-    //     count[key] -= 1;
-    // }
-
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = arr.length - 1; i >= 0; i--) {
         const value = arr[i];
         const key = keyFunction(value) - minValue;
 
         out[count[key] - 1] = value;
         count[key] -= 1;
     }
+
+    // for (let i = 0; i < arr.length; i++) {
+    //     const value = arr[i];
+    //     const key = keyFunction(value) - minValue;
+
+    //     out[count[key] - 1] = value;
+    //     count[key] -= 1;
+    // }
 
     Object.assign(arr, out);
     return arr;
