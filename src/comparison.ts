@@ -13,13 +13,11 @@ const insertionSort = function <T>(
     arr: Array<T>,
     compareFunction: CompareFunction<T> = defaultComparator
 ): Array<T> {
-    let total = 0;
     for (let i = 1; i < arr.length; i++) {
         for (let j = i - 1; j >= 0; j--) {
             const left = j;
             const right = j + 1;
 
-            total += 1;
             if (compareFunction(arr[right], arr[left]) < 0) {
                 [arr[left], arr[right]] = [arr[right], arr[left]];
             } else {
@@ -27,7 +25,6 @@ const insertionSort = function <T>(
             }
         }
     }
-    console.log(total);
     return arr;
 };
 
@@ -35,12 +32,10 @@ const selectionSort = function <T>(
     arr: Array<T>,
     compareFunction: CompareFunction<T> = defaultComparator
 ): Array<T> {
-    let total = 0;
     for (let i = 0; i < arr.length - 1; i++) {
         let minIndex = i;
 
         for (let j = i; j < arr.length; j++) {
-            total += 1;
             minIndex = compareFunction(arr[j], arr[minIndex]) < 0 ? j : minIndex;
         }
 
@@ -48,7 +43,6 @@ const selectionSort = function <T>(
             [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
         }
     }
-    console.log(total);
     return arr;
 };
 
@@ -92,7 +86,6 @@ const quickSort = function <T>(
 
     const randomElement = function (left: number, right: number): number {
         return Math.floor(Math.random() * (right - left)) + left;
-        return right;
     };
 
     const middleElement = function (left: number, right: number): number {
