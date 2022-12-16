@@ -212,5 +212,5 @@ export {
     insertionSort,
     selectionSort,
     quickSort,
-    mergeSort
+    mergeSort,
 };

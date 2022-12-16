@@ -6,7 +6,7 @@ import {
     selectionSort,
     bubbleSort,
     quickSort,
-    mergeSort
+    mergeSort,
 } from "../src/comparison.js";
 
 import { countingSort, radixSort } from "../src/integer.js";
@@ -54,7 +54,7 @@ const comparisonSortingFunctions = [
     selectionSort,
     bubbleSort,
     quickSort,
-    mergeSort
+    mergeSort,
 ];
 
 testSortingFunctions(n, comparisonSortingFunctions);
